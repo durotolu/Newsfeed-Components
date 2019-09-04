@@ -34,22 +34,26 @@ let menuItems = [
   
 */
 
-function menu (menuData) {
-  const {div, ul, l1, l2, l3, l4, l5, l6} = menuData;
+function menu (listArray) {
   const div = document.createElement('div');
+  div.setAttribute('class', 'menu');
   const ul = document.createElement('ul');
-  const l1 = document.createElement('l');
-  const l2 = document.createElement('l');
-  const l3 = document.createElement('l');
-  const l4 = document.createElement('l');
-  const l5 = document.createElement('l');
-  const l6 = document.createElement('l');
+
+  listArray.map(element => {
+    const li = document.createElement('li');
+    li.textContent = element;
+    ul.appendChild(li);
+  });
   
   div.appendChild(ul);
-  ul.appendChild(l1);
-  ul.appendChild(l2);
-  ul.appendChild(l3);
-  ul.appendChild(l4);
-  ul.appendChild(l5);
-  ul.appendChild(l6);
+
+  let menuButton = document.querySelector('.menu-button');
+  menuButton.addEventListener('click', () => {
+    div.classList.toggle('menu--open')
+  })
+
+  return div;
 }
+
+let menuBag = document.querySelector('.header');
+menuBag.appendChild(menu(menuItems));
