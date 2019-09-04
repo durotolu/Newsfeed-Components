@@ -102,7 +102,24 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+*/
+function articleMaker (data) {
+  const {title, } = data;
+  const div = document.createElement('div');
+  div.setAttribute('class', 'article');
+  const h2 = document.createElement('h2');
+  const p1 = document.createElement('p');
+  p1.setAttribute('class', 'date');
+  const p2 = document.createElement('p');
+  const span = document.createElement('span');
 
+  h2.textContent = title;
+  p1.textContent = text1;
+  p2.textContent = text2;
+}
+
+
+/*
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
