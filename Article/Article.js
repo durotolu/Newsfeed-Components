@@ -88,6 +88,14 @@ const data = [
   }
 ];
 
+data.push({
+  title: 'New Article',
+  date: 'Sept 4, 2019',
+  firstParagraph: 'Just',
+  secondParagraph: 'One',
+  thirdParagraph: 'Line'
+})
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
@@ -102,7 +110,49 @@ const data = [
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+*/
+function articleMaker (info) {
+  const {title, date, firstParagraph, secondParagraph, thirdParagraph} = info;
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const p4 = document.createElement('p');
+  const span = document.createElement('span');
 
+  div.setAttribute('class', 'article');
+  h2.textContent = title;
+  p1.textContent = date;
+  p1.setAttribute('class', 'date');
+  p2.textContent = firstParagraph;
+  p3.textContent = secondParagraph;
+  p4.textContent = thirdParagraph;
+  span.setAttribute('class', 'expandButton');
+  span.textContent = 'toggle';
+
+  div.appendChild(h2);
+  div.appendChild(p1);
+  div.appendChild(p2);
+  div.appendChild(p3);
+  div.appendChild(p4);
+  div.appendChild(span);
+
+  span.addEventListener('click', e =>
+    div.classList.toggle('article-open'));
+
+  return div;
+}
+
+const articles = data.map(articleMaker);
+
+const container = document.querySelector('.articles');
+
+articles.forEach((element) => {
+  container.appendChild(element);
+})
+
+/*
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
   Step 3: return the entire component.
@@ -112,3 +162,4 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
